@@ -9,7 +9,7 @@ function List(props) {
         props.data.map((elt,idx) => {
           return(
             <li key={idx}>
-              {elt}
+              {elt.name}
             </li>
           );
         })

@@ -16,13 +16,13 @@ class GroceryList extends Component {
     var currentGroceries = this.state.groceries;
     this.callApi()
       .then(res => {
-        this.setState({ groceries: currentGroceries.concat(res.express) });
+        this.setState({ groceries: currentGroceries.concat(res) });
       })
       .catch(err => console.log(err));
   }
 
   callApi = async () => {
-    const response = await fetch("/")
+    const response = await fetch("http://localhost:1337/groceries");
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -32,8 +32,19 @@ class GroceryList extends Component {
   
   addClickHandler() {
     if (this.state.inputGrocery)
-      this.state.groceries.push(this.state.inputGrocery);
+      this.state.groceries.push({name: this.state.inputGrocery});
     this.setState({inputGrocery: ""});
+  }
+
+  checkoutClickHandler = async () => {
+    const response = await fetch("http://localhost:1337/groceries",
+      {method: "POST", body: JSON.stringify({data: this.state.groceries})});
+    
+    try {
+      this.setState({groceries: []});
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -45,7 +56,7 @@ class GroceryList extends Component {
         />
         <div className="button" onClick={() => {this.addClickHandler()}}>Add</div>
         <List data={this.state.groceries} />
-        <div className="button" onClick={() => {this.setState({isCheckoutMode: true})}}>Checkout</div>
+        <div className="button" onClick={() => {this.checkoutClickHandler()}}>Checkout</div>
         {
           this.state.isCheckoutMode && 
           <div>Checked out!</div>
