@@ -1,0 +1,12 @@
+.App {
+  display: inline-block;
+}
+
+.button {
+  background-color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #aaa;
+}
