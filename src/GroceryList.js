@@ -38,10 +38,16 @@ class GroceryList extends Component {
 
   checkoutClickHandler = async () => {
     const response = await fetch("http://localhost:1337/groceries",
-      {method: "POST", body: JSON.stringify({data: this.state.groceries})});
+      {
+        method: "POST", 
+        body: JSON.stringify({data: this.state.groceries}),
+        headers: { "Content-Type": "application/json" }
+      });
     
     try {
-      this.setState({groceries: []});
+      const rez = await response.json()
+        console.log('res ', rez)
+        this.setState({groceries: []});
     } catch(error) {
       console.log(error);
     }
