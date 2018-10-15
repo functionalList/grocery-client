@@ -1,12 +1,35 @@
-.App {
+#appBody {
   display: inline-block;
 }
 
 .button {
-  background-color: white;
   cursor: pointer;
 }
 
 .button:hover {
   background-color: #aaa;
+}
+
+#header {
+  float:left;
+  width:99%;
+}
+
+#logo {
+  text-align:left;
+  vertical-align:top;
+  width:50%;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.userInfoContainer {
+  text-align:right;
+  width:50%;
+  display: inline-block;
+}
+
+.headerElement {
+  text-align: right;
+  display:inline-block;
 }
