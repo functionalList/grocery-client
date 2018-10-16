@@ -11,6 +11,7 @@ class GroceryList extends Component {
     }
   }
 
+  /*
   componentDidMount() {
     var currentGroceries = this.state.groceries;
     this.callApi()
@@ -28,6 +29,7 @@ class GroceryList extends Component {
 
     return body;
   };
+  */
   
   addClickHandler() {
     if (this.state.inputGrocery)
