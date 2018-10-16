@@ -28,7 +28,7 @@ class App extends Component {
         <div id="appBody">
         {
           this.state.username ? 
-          <GroceryList /> : 
+          <GroceryList username={this.state.username}/> : 
           <Login onSubmit={(username) => this.onUsernameSubmit(username)}/>
         }
         </div>
