@@ -9,24 +9,22 @@ class GroceryList extends Component {
       groceries: [],
       isCheckoutMode: false,
     }
+    this.fetchGroceries = this.fetchGroceries.bind(this)
   }
 
   componentDidMount() {
-    var currentGroceries = this.state.groceries;
-    this.callApi()
-      .then(res => {
-        this.setState({ groceries: currentGroceries.concat(res) });
-      })
-      .catch(err => console.log(err));
+    this.fetchGroceries()
   }
 
-  callApi = async () => {
+  fetchGroceries = async () => {
     const response = await fetch("http://localhost:1337/groceries");
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
+    const groceries = await response.json();
+    try {
+      this.setState({groceries})
+    }
+    catch(error) {
+      console.log(error)
+    }
   };
   
   addClickHandler() {
@@ -36,16 +34,18 @@ class GroceryList extends Component {
   }
 
   checkoutClickHandler = async () => {
+
+    //userId is hardcoded for now - let's wire it up
+    const userId = 2
     const response = await fetch("http://localhost:1337/groceries",
       {
         method: "POST", 
-        body: JSON.stringify({data: this.state.groceries}),
+        body: JSON.stringify({groceries: this.state.groceries, userId }),
         headers: { "Content-Type": "application/json" }
       });
     
     try {
       const rez = await response.json()
-        console.log('res ', rez)
         this.setState({groceries: []});
     } catch(error) {
       console.log(error);
