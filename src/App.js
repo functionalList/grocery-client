@@ -9,12 +9,31 @@ class App extends Component {
     super(props);
     this.state = {
       username: null,
+      userID: null,
     }
   }
 
-  onUsernameSubmit(username) {
-    if (username)
-      this.setState({username: username});
+  onUsernameSubmit = async(username) => {
+    if (username) {
+
+      const response = await fetch("http://localhost:1337/users",
+        {
+          method: "POST", 
+          body: JSON.stringify({username}),
+          headers: { "Content-Type": "application/json" }
+        });
+      
+      try {
+        const user = await response.json()
+        this.setState({
+          username: username,
+          userID: user.id
+        });
+      } catch(error) {
+        console.log(error);
+      }
+
+    }
   }
 
   onLogoutClick() {
@@ -28,7 +47,7 @@ class App extends Component {
         <div id="appBody">
         {
           this.state.username ? 
-          <GroceryList /> : 
+          <GroceryList username={this.state.username}/> : 
           <Login onSubmit={(username) => this.onUsernameSubmit(username)}/>
         }
         </div>

@@ -12,6 +12,7 @@ class GroceryList extends Component {
     this.fetchGroceries = this.fetchGroceries.bind(this)
   }
 
+  /*
   componentDidMount() {
     this.fetchGroceries()
   }
@@ -26,6 +27,7 @@ class GroceryList extends Component {
       console.log(error)
     }
   };
+  */
   
   addClickHandler() {
     if (this.state.inputGrocery)
