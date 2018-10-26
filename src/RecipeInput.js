@@ -30,7 +30,11 @@ class RecipeInput extends Component {
     
     try {
       const rez = await response.json()
-        console.log('res ', rez)
+        this.props.recipeUpdateHandler({
+          userID: rez.id,
+          ingredients: this.state.ingredients,
+          title: this.state.recipeTitle
+        });
         this.setState({ingredients: []});
     } catch(error) {
       console.log(error);

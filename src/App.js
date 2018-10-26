@@ -12,7 +12,9 @@ class App extends Component {
     this.state = {
       username: null,
       userID: null,
+      recipes: []
     }
+    this.recipeUpdateHandler = this.recipeUpdateHandler.bind(this);
   }
 
   onUsernameSubmit = async(username) => {
@@ -30,13 +32,36 @@ class App extends Component {
         console.log(user);
         this.setState({
           username: username,
-          userID: user[1].ID
+          userID: user[1][0].ID
         });
+        this.updateRecipes();
       } catch(error) {
         console.log(error);
       }
-
     }
+  }
+
+  updateRecipes = async () => {
+    const response = await fetch("http://localhost:1337/myRecipes/" + this.state.username,
+      {
+        method: "GET", 
+        headers: { "Content-Type": "application/json" }
+      });
+    
+    try {
+      const rez = await response.json()
+        console.log(rez);
+        this.setState({recipes: rez});
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  recipeUpdateHandler(newData) {
+    const recipes = [...this.state.recipes, newData];
+    this.setState({
+      recipes
+    });
   }
 
   onLogoutClick() {
@@ -52,8 +77,8 @@ class App extends Component {
           this.state.username ? 
           <div>
             <GroceryList username={this.state.username}/>
-            <RecipeList username={this.state.username}/>
-            <RecipeInput userID={this.state.userID}/>
+            <RecipeList recipes={this.state.recipes} username={this.state.username}/>
+            <RecipeInput recipeUpdateHandler={this.recipeUpdateHandler} userID={this.state.userID}/>
           </div> :
           <Login onSubmit={(username) => this.onUsernameSubmit(username)}/>
           
