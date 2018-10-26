@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GroceryList from './GroceryList';
+import RecipeList from './RecipeList';
 import Login from './Login';
 import Header from './Header';
 import './App.css';
@@ -47,8 +48,12 @@ class App extends Component {
         <div id="appBody">
         {
           this.state.username ? 
-          <GroceryList username={this.state.username}/> : 
+          <div>
+            <GroceryList username={this.state.username}/>
+            <RecipeList username={this.state.username}/>
+          </div> :
           <Login onSubmit={(username) => this.onUsernameSubmit(username)}/>
+          
         }
         </div>
       </div>
