@@ -1,31 +1,37 @@
 import React, { Component } from 'react';
+import List from './List';
 
 class RecipeInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      recipeTitle: "",
       inputIngredient: "",
+      ingredients: []
     }
   }
   
   addClickHandler() {
-    if (this.state.inputGrocery)
-      this.state.groceries.push({name: this.state.inputGrocery});
-    this.setState({inputGrocery: ""});
+    const ingredients = [...this.state.ingredients, {name: this.state.inputIngredient}];
+    this.setState({ingredients, inputIngredient: ""});
   }
 
   submitClickHandler = async () => {
-    const response = await fetch("http://localhost:1337/groceries",
+    const response = await fetch("http://localhost:1337/myRecipes/",
       {
         method: "POST", 
-        body: JSON.stringify({data: this.state.groceries}),
+        body: JSON.stringify({
+          userID: this.props.userID,
+          ingredients: this.state.ingredients,
+          title: this.state.recipeTitle
+        }),
         headers: { "Content-Type": "application/json" }
       });
     
     try {
       const rez = await response.json()
         console.log('res ', rez)
-        this.setState({groceries: []});
+        this.setState({ingredients: []});
     } catch(error) {
       console.log(error);
     }
@@ -33,21 +39,25 @@ class RecipeInput extends Component {
 
   render() {
     return (
-      <div className="GroceryList">
+      <div className="RecipeInput">
+        <div>Title</div>
         <input 
-          value={this.state.inputGrocery}
-          onChange={(e) => {this.setState({inputGrocery: e.target.value})}} 
+          value={this.state.recipeTitle}
+          onChange={(e) => {this.setState({recipeTitle: e.target.value})}} 
         />
-        <div className="button" onClick={() => {this.addClickHandler()}}>Add</div>
-        <List data={this.state.groceries} />
-        <div className="button" onClick={() => {this.checkoutClickHandler()}}>Checkout</div>
-        {
-          this.state.isCheckoutMode && 
-          <div>Checked out!</div>
-        }
+        <input 
+          value={this.state.inputIngredient}
+          onChange={(e) => {this.setState({inputIngredient: e.target.value})}} 
+        />
+        <div className="button" 
+          onClick={() => {this.addClickHandler()}}
+          disabled={!this.state.inputIngredient}
+          >Add</div>
+        <List data={this.state.ingredients} />
+        <div className="button" onClick={() => {this.submitClickHandler()}}>Submit</div>
       </div>
     );
   }
 }
 
-export default RecipeList;
+export default RecipeInput;

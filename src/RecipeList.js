@@ -39,13 +39,14 @@ class RecipeList extends Component {
             return(
               <div id={i} className="Recipe">
                 <div>{x.name}</div>
-                <div>Created by {x.creator}</div>
                 {
+                  /*
                   x.ingredients.map((y,j) => {
                     return(
                       <div id={j}>{y}</div>
                     )
                   })
+                  */
                 }
               </div>
             );

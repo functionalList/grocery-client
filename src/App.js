@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GroceryList from './GroceryList';
+import RecipeInput from './RecipeInput';
 import RecipeList from './RecipeList';
 import Login from './Login';
 import Header from './Header';
@@ -26,9 +27,10 @@ class App extends Component {
       
       try {
         const user = await response.json()
+        console.log(user);
         this.setState({
           username: username,
-          userID: user.id
+          userID: user[1].ID
         });
       } catch(error) {
         console.log(error);
@@ -51,6 +53,7 @@ class App extends Component {
           <div>
             <GroceryList username={this.state.username}/>
             <RecipeList username={this.state.username}/>
+            <RecipeInput userID={this.state.userID}/>
           </div> :
           <Login onSubmit={(username) => this.onUsernameSubmit(username)}/>
           
