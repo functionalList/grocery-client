@@ -1,8 +1,7 @@
 import React from 'react';
 
 function RecipeList(props) {
-  console.log("Look");
-  console.log(props.recipes);
+
   return (
     <div className="RecipeList">
       <div>Recipes</div>
