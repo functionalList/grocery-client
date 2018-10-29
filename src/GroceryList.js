@@ -9,7 +9,7 @@ class GroceryList extends Component {
       groceries: [],
       isCheckoutMode: false,
     }
-    this.fetchGroceries = this.fetchGroceries.bind(this)
+    //this.fetchGroceries = this.fetchGroceries.bind(this)
   }
 
   /*
