@@ -4,7 +4,8 @@ function RecipeList(props) {
 
   return (
     <div className="RecipeList">
-      <div>Recipes</div>
+      <div>{`${props.username}'s Recipes!`}</div>
+      <button className='followButton' onClick={props.followNew}>Follow! +</button>
       {
         props.recipes.map((x,i) => {
           return(

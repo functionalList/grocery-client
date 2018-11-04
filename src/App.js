@@ -5,8 +5,10 @@ import RecipeList from './RecipeList';
 import Login from './Login';
 import Header from './Header';
 import './App.css';
+import './SCSS/App.scss'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import RecipeManager from './RecipeManager'
+import Following from './FollowingList'
 
 class App extends Component {
   constructor(props) {
@@ -14,9 +16,22 @@ class App extends Component {
     this.state = {
       username: null,
       userID: null,
-      recipes: []
+      recipes: [],
+      friends: []
     }
     this.recipeUpdateHandler = this.recipeUpdateHandler.bind(this);
+  }
+
+  fetchFollowing = async(userId) => {
+    const response = await fetch("http://localhost:1337/users/friends/" +userId)
+    try {
+      const friends = await response.json()
+
+      this.setState({friends})
+    }
+    catch(err){
+      console.log(err)
+    }
   }
 
   onUsernameSubmit = async(username) => {
@@ -31,12 +46,16 @@ class App extends Component {
       
       try {
         const user = await response.json()
-        console.log('users? ', user)
+
+        const userID = user[1][0].ID
+
         this.setState({
           username: username,
-          userID: user[1][0].ID
+          userID
         });
-        this.updateRecipes();
+        this.updateRecipes()
+        this.fetchFollowing(userID)
+
       } catch(error) {
         console.log(error);
       }
@@ -79,19 +98,19 @@ class App extends Component {
           <div>
             <GroceryList username={this.state.username}/>
             <BrowserRouter>
-              <Switch>
-              
+              <div>
+              <Following following={this.state.friends}/>
+
               <Route path='/:username' render={props=>(
-                
                 <RecipeManager userRecipes={this.state.recipes} username={props.match.params.username} 
                 userID = {this.state.userID} recipeUpdateHandler={this.recipeUpdateHandler}/>
-              )}/>
+              )}/>  
+              <h2>Your recipes!</h2>
               <Route path='/' render={props=>(
                 <RecipeManager userRecipes={this.state.recipes} username={this.state.username} 
                 userID = {this.state.userID} recipeUpdateHandler={this.recipeUpdateHandler}/>
               )}/>
-              
-              </Switch>
+              </div>            
             </BrowserRouter>
           </div> :
           <Login onSubmit={(username) => this.onUsernameSubmit(username)}/>

@@ -1,0 +1,42 @@
+$deliciousPurple : rgb(233, 89, 233);
+$deliciousBlue : rgb(37, 116, 219);
+$b2 : 2px solid;
+
+.add {
+  border: $b2 $deliciousPurple;
+}
+
+.following {
+  border: $b2 red;
+  padding: 30px;
+
+  .friend {
+    padding: 10px 10px;
+  }
+
+}
+
+.friend {
+  border: $b2 $deliciousBlue;
+}
+
+//mixin practice
+//also - these comments won't compile! awesome!
+
+@mixin borderCustom($color, $thickness){
+  border: $thickness solid $color;
+}
+
+.checkout {
+  @include borderCustom(orange, 4px);
+  border-radius: 4px;
+}
+
+.followButton {
+  display: block-inline;
+  border: 1px solid $deliciousPurple;
+}
+
+.followButton:hover {
+  background-color: $deliciousPurple;
+}
