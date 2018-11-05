@@ -5,7 +5,7 @@ const Following = props => {
   return (
     <div className='following'>
       <h3>Your friends</h3>
-      {props.following.map(each=>(<Link className='friend' to={`/${each.name}`}>{each.name}</Link>))}
+      {props.following.map(each=>(<Link className='friend' to={`/creator/${each.name}`}>{each.name}</Link>))}
     </div>
   )
 }
