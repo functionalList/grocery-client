@@ -53,7 +53,7 @@ class RecipeManager extends React.Component {
 
     return (
       <div className = 'friend'>
-        <RecipeList isSelf={this.props.isSelf} followNew= {this.followNew} recipes={this.state.recipes} username={this.props.username}/>
+        <RecipeList displayrecipe={this.props.displayrecipe} isSelf={this.props.isSelf} followNew= {this.followNew} recipes={this.state.recipes} username={this.props.username}/>
         {
           this.props.isSelf &&
           <RecipeInput recipeUpdateHandler={this.props.recipeUpdateHandler} userID={this.props.userID}/>

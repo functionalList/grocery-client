@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './List';
-import './SCSS/GroceryList.scss'
+import './SCSS/GroceryList.scss';
+import Shiny from "react-gradient-carousel";
 
 class GroceryList extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class GroceryList extends Component {
         />
         <div className="button add" onClick={() => {this.addClickHandler()}}>Add</div>
         <List data={this.state.groceries} />
-        <div className="button checkout" onClick={() => {this.checkoutClickHandler()}}>Checkout</div>
+        <Shiny className="button checkout" onClick={() => {this.checkoutClickHandler()}}>Checkout</Shiny>
         {
           this.state.isCheckoutMode && 
           <div>Checked out!</div>
