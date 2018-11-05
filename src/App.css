@@ -6,10 +6,6 @@
   cursor: pointer;
 }
 
-.button:hover {
-  background-color: #aaa;
-}
-
 #header {
   float:left;
   width:99%;

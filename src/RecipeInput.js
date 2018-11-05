@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import List from './List';
+import Shiny from "react-gradient-carousel";
+
 
 class RecipeInput extends Component {
   constructor(props) {
@@ -45,11 +47,11 @@ class RecipeInput extends Component {
     return (
       <div className="RecipeInput">
         <div>Title</div>
-        <input 
+        <input className='recipeTitle'
           value={this.state.recipeTitle}
           onChange={(e) => {this.setState({recipeTitle: e.target.value})}} 
         />
-        <input 
+        <input className='recipeIngredient'
           value={this.state.inputIngredient}
           onChange={(e) => {this.setState({inputIngredient: e.target.value})}} 
         />
@@ -58,7 +60,7 @@ class RecipeInput extends Component {
           disabled={!this.state.inputIngredient}
           >Add</div>
         <List data={this.state.ingredients} />
-        <div className="button" onClick={() => {this.submitClickHandler()}}>Submit</div>
+        <Shiny clickMode={3} colorTheme='orange' gradientCenter = '#567bcd9e' className="button" onClick={() => {this.submitClickHandler()}}>Submit</Shiny>
       </div>
     );
   }

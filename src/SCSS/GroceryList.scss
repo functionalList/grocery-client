@@ -33,10 +33,36 @@ $b2 : 2px solid;
 }
 
 .followButton {
-  display: block-inline;
+  display: inline-block;
   border: 1px solid $deliciousPurple;
+}
+
+.followed {
+  display: inline-block;
+  background-color: lighten($color: $deliciousPurple, $amount: 20%);
+  padding: 2px;
+  opacity: .8;
 }
 
 .followButton:hover {
   background-color: $deliciousPurple;
+}
+
+.recipeTitle {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 4px solid rgba(137, 43, 226, 0.276);
+}
+
+.recipeTitle:focus {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 4px solid rgb(137, 43, 226);
+  transition: border-bottom 2.5s;
+}
+
+.recipeIngredient {
+  display: block;
 }
