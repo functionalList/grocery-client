@@ -101,13 +101,13 @@ class App extends Component {
             <BrowserRouter>
               <div>
                 <Following following={this.state.friends}/>
-                <Route path='/creator/:username/:recipeName' render={props=>(
-                  <RecipeManager userRecipes={this.state.recipes} username={props.match.params.username} 
+                <Route path='/creator/:username/:recipeName?' render={props=>(
+                  <RecipeManager isSelf={false} userRecipes={this.state.recipes} username={props.match.params.username} 
                   displayrecipe={props.match.params.recipeName} userID = {this.state.userID} recipeUpdateHandler={this.recipeUpdateHandler}/>
-                )}/>  
+                )}/> 
                 <h2>Your recipes!</h2>
                 <Route path='/' render={props=>(
-                  <RecipeManager userRecipes={this.state.recipes} username={this.state.username} 
+                  <RecipeManager isSelf={true} userRecipes={this.state.recipes} username={this.state.username} 
                   userID = {this.state.userID} recipeUpdateHandler={this.recipeUpdateHandler}/>
                 )}/>
                 {

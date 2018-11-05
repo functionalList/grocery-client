@@ -16,6 +16,12 @@ class RecipeManager extends React.Component {
     this.fetchUserRecipes()
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.username != prevProps.username) {
+      this.fetchUserRecipes();
+    }
+  }
+
   async fetchUserRecipes(){
 
     const response = await fetch("http://localhost:1337/myRecipes/"+ this.props.username)
@@ -47,8 +53,11 @@ class RecipeManager extends React.Component {
 
     return (
       <div className = 'friend'>
-        <RecipeList followNew= {this.followNew} recipes={this.state.recipes} username={this.props.username}/>
-        <RecipeInput recipeUpdateHandler={this.props.recipeUpdateHandler} userID={this.props.userID}/>
+        <RecipeList isSelf={this.props.isSelf} followNew= {this.followNew} recipes={this.state.recipes} username={this.props.username}/>
+        {
+          this.props.isSelf &&
+          <RecipeInput recipeUpdateHandler={this.props.recipeUpdateHandler} userID={this.props.userID}/>
+        }
       </div>
     )
   }
