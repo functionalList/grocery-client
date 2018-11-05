@@ -70,8 +70,8 @@ class App extends Component {
       });
     
     try {
-      const recipes = await response.json()
-        this.setState({recipes});
+      const recipes = await response.json();
+      this.setState({recipes});
     } catch(error) {
       console.log(error);
     }

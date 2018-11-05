@@ -14,11 +14,11 @@ function RecipeList(props) {
         props.recipes.map((x,i) => {
           return(
             <div id={i} className="Recipe">
-              <Link to={`${props.username}/${x.name}`}>{x.name}</Link>
+              <Link to={`/creator/${props.username}/${x.recipeName}`}>{x.recipeName}</Link>
               {
                 x.recipeName == props.displayrecipe && x.ingredients && (
-                x.ingredients.map((each) => {
-                  return(<div>each.name</div>);
+                x.ingredients.split(",").map((each) => {
+                  return(<div>{each}</div>);
                 }))
               }
             </div>
