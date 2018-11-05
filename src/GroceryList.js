@@ -65,7 +65,7 @@ class GroceryList extends Component {
         />
         <div className="button add" onClick={() => {this.addClickHandler()}}>Add</div>
         <List data={this.state.groceries} />
-        <Shiny className="button checkout" onClick={() => {this.checkoutClickHandler()}}>Checkout</Shiny>
+        <Shiny clickMode={2} colorTheme = 'paleturquoise' className="button checkout" onClick={() => {this.checkoutClickHandler()}}>Checkout</Shiny>
         {
           this.state.isCheckoutMode && 
           <div>Checked out!</div>
