@@ -24,9 +24,9 @@ class Login extends Component{
           value={this.state.username}
           onChange={(e) => {this.usernameInputChangeHandler(e)}} 
         />
-        <div 
+        <button 
           className="button" 
-          onClick={() => {this.submitClickHandler()}}>Submit</div>
+          onClick={() => {this.submitClickHandler()}}>Submit</button>
       </div>
     )
   }

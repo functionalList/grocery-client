@@ -1,23 +1,31 @@
-$deliciousPurple : rgb(233, 89, 233);
-$deliciousBlue : rgb(37, 116, 219);
-$b2 : 2px solid;
 
 .add {
   border: $b2 $deliciousPurple;
 }
 
 .following {
+  position: fixed;
+  right: 20%;
+  top: 5px;
+  width: 75px;
   border: $b2 red;
-  padding: 30px;
 
   .friend {
-    padding: 10px 10px;
+    padding-top: 5px;
+    width: 100%;
   }
+}
 
+.showButton {
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 .friend {
-  border: $b2 $deliciousBlue;
+  border-bottom: $b2;
+  border-top: $b2;
+  border-color: $deliciousBlue;
+  box-sizing: border-box;
 }
 
 //mixin practice
@@ -30,6 +38,7 @@ $b2 : 2px solid;
 .checkout {
   @include borderCustom(orange, 4px);
   border-radius: 4px;
+  font-size: 24px;
 }
 
 .followButton {
@@ -46,23 +55,4 @@ $b2 : 2px solid;
 
 .followButton:hover {
   background-color: $deliciousPurple;
-}
-
-.recipeTitle {
-  box-shadow: none;
-  outline: none;
-  border: none;
-  border-bottom: 4px solid rgba(137, 43, 226, 0.276);
-}
-
-.recipeTitle:focus {
-  box-shadow: none;
-  outline: none;
-  border: none;
-  border-bottom: 4px solid rgb(137, 43, 226);
-  transition: border-bottom 2.5s;
-}
-
-.recipeIngredient {
-  display: block;
 }
