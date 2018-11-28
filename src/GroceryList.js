@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import List from './List';
-import './SCSS/GroceryList.scss';
 import Shiny from "react-gradient-carousel";
 
 class GroceryList extends Component {
@@ -63,7 +62,7 @@ class GroceryList extends Component {
           value={this.state.inputGrocery}
           onChange={(e) => {this.setState({inputGrocery: e.target.value})}} 
         />
-        <div className="button add" onClick={() => {this.addClickHandler()}}>Add</div>
+        <button className="button add" onClick={() => {this.addClickHandler()}}>Add</button>
         <List data={this.state.groceries} />
         <Shiny clickMode={2} colorTheme = 'paleturquoise' className="button checkout" onClick={() => {this.checkoutClickHandler()}}>Checkout</Shiny>
         {

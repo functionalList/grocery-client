@@ -17,7 +17,8 @@ class App extends Component {
       username: null,
       userID: null,
       recipes: [],
-      friends: []
+      friends: [],
+      showRecipes: false
     }
     this.recipeUpdateHandler = this.recipeUpdateHandler.bind(this);
     this.followNew=this.followNew.bind(this)
@@ -133,13 +134,18 @@ class App extends Component {
                   followNew={this.followNew} recipeUpdateHandler={this.recipeUpdateHandler}/>
                   </div>
                 )}/> 
+                <div className={this.state.showRecipes ? 'your-recipes' : 'your-recipes-closed'} >
                 <h2>Your recipes!</h2>
                 <RecipeManager friends={this.state.friends} isSelf={true} userRecipes={this.state.recipes} creator={this.state.username} 
                   userID = {this.state.userID} 
                   recipeUpdateHandler={this.recipeUpdateHandler}/>
                 <RecipeInput recipeUpdateHandler={this.recipeUpdateHandler} userID={this.state.userID}/>
+                </div>
               </div>
             </BrowserRouter>
+            <div className='bottomNav'>
+              <div className='recipesShow' onClick={()=>{this.setState({showRecipes:!this.state.showRecipes})}}>R</div>
+            </div>
           </div> :
           <Login onSubmit={(username) => this.onUsernameSubmit(username)}/>
           

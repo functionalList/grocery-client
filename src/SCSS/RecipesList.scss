@@ -1,0 +1,63 @@
+
+.recipeSubmit {
+  border: 4px solid coral;
+  border-radius: 2px;
+}
+
+
+$yourRecipesList : 360px;
+
+.your-recipes{
+  width: $yourRecipesList;
+  border-top: 5px solid $deliciousBlue;
+  height: 300px;
+  transition: height .5s;
+  overflow: hidden;
+
+
+  input{
+    width: $yourRecipesList*.7;
+  }
+}
+
+.your-recipes-closed{
+  overflow: hidden;
+  height: 20px;
+  transition: height .5s;
+}
+
+.recipeTitle {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 4px solid rgba(137, 43, 226, 0.434);
+  font-size: 20px;
+}
+
+.recipeTitle:focus {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 4px solid rgb(137, 43, 226);
+  transition: border-bottom 2.5s;
+}
+
+.recipeIngredient {
+
+}
+
+.recipesShow{
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.bottomNav{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  border-top: 4px solid black;
+  background-color: rgba(205, 205, 205, 0.774);
+}

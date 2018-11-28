@@ -1,0 +1,30 @@
+input{
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 4px solid rgba(137, 43, 226, 0.434);
+}
+
+input:focus {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 4px solid rgba(137, 43, 226, 0.906);
+  transition: border-bottom 2.2s;
+}
+
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+li{
+  border-bottom: 4px solid rgba(137, 43, 226, 0.434);
+  padding-left: 8px;
+}
+
+button {
+  border: 2px solid crimson;
+  border-radius: 10%;
+  display: inline;
+}

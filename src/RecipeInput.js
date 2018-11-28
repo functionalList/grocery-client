@@ -46,8 +46,7 @@ class RecipeInput extends Component {
   render() {
     return (
       <div className="RecipeInput">
-        <div>Title</div>
-        <input className='recipeTitle'
+        <input className='recipeTitle' placeholder='Your recipe here'
           value={this.state.recipeTitle}
           onChange={(e) => {this.setState({recipeTitle: e.target.value})}} 
         />
@@ -55,12 +54,12 @@ class RecipeInput extends Component {
           value={this.state.inputIngredient}
           onChange={(e) => {this.setState({inputIngredient: e.target.value})}} 
         />
-        <div className="button" 
+        <button className="add" 
           onClick={() => {this.addClickHandler()}}
           disabled={!this.state.inputIngredient}
-          >Add</div>
+          >Add</button>
         <List data={this.state.ingredients} />
-        <Shiny clickMode={3} colorTheme='orange' gradientCenter = '#567bcd9e' className="button" onClick={() => {this.submitClickHandler()}}>Submit</Shiny>
+        <Shiny clickMode={3} className='recipeSubmit' colorTheme='orange' gradientCenter = '#567bcd9e' onClick={() => {this.submitClickHandler()}}>Submit</Shiny>
       </div>
     );
   }
